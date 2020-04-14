@@ -19,11 +19,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(logger(function (tokens, req, res) {
+  let resTime = (tokens['response-time'](req, res)).split('.')[0];
+  if(resTime.length < 2) resTime = '0'+resTime;
   return [
     tokens.method(req, res),
     tokens.url(req, res),
     tokens.status(req, res) == 500 ? 200 : tokens.status(req, res),
-    (tokens['response-time'](req, res)).split('.')[0]+'ms'
+    resTime+'ms'
   ].join(' ')
 }, { stream: accessLogStream }));
 app.use(express.json());
