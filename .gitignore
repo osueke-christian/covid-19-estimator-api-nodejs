@@ -108,4 +108,5 @@ package-lock.json
 
 # Exclude logs
 access.log
-*access.log
+access.logs
+access.log.txt
