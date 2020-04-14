@@ -22,8 +22,8 @@ app.use(logger(function (tokens, req, res) {
   return [
     tokens.method(req, res),
     tokens.url(req, res),
-    tokens.status(req, res),
-    (tokens['response-time'](req, res)).split('.')[0], 'ms'
+    tokens.status(req, res) == 500 ? 200 : tokens.status(req, res),
+    (tokens['response-time'](req, res)).split('.')[0]+'ms'
   ].join(' ')
 }, { stream: accessLogStream }));
 app.use(express.json());

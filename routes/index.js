@@ -14,8 +14,7 @@ router.post(['/on-covid-19/*', '/on-covid-19'], function(req, res, next) {
   if(route[route.length-1] == 'xml'){
     res.set('Content-Type', 'application/xml');
     res.type('application/xml');
-    res.send(xml);
-    res.end();
+    res.status(200).send(xml);
   }
   res.send(json);
 });
