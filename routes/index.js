@@ -5,7 +5,7 @@ var path = require('path');
 var convert = require('xml-js');
 var covid19ImpactEstimator = require('../estimator');
 
-router.post('/on-covid-19/*', function(req, res, next) {
+router.post(['/on-covid-19/*', '/on-covid-19'], function(req, res, next) {
   let route = req.path.split('/')
   const json = covid19ImpactEstimator(req.body); // @todo: add validations
   const options = {compact: true, ignoreComment: true, spaces: 4};
