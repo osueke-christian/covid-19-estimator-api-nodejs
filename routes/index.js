@@ -22,6 +22,8 @@ router.post('/on-covid-19/*', function(req, res, next) {
 
 router.get('/on-covid-19/logs', function(req, res, next) {
   let file = fs.readFileSync(path.join(appRoot, 'access.log'), 'utf8');
+  res.set('Content-Type', 'text/plain');
+  res.type('text/plain');
   res.send(file);
 });
 
